@@ -101,7 +101,7 @@ AC_ARG_WITH(site-bundle,
 
 dnl Add more test
 
-KAHUA_BUILD_REVISION=`cat REVISION`
+KAHUA_BUILD_REVISION=``
 AC_SUBST(KAHUA_BUILD_REVISION)
 
 dnl Set LDFLAGS to generate shared library.

@@ -164,7 +164,7 @@
    (error-document-alist :init-keyword :error-document-alist :init-value '())
 
    (repository-dir :init-keyword :repository-dir :init-value *kahua-repository-dir-default*)
-   (skelton-dir :init-keyword :skelton-dir :init-value #?=*kahua-skelton-dir-default*)
+   (skelton-dir :init-keyword :skelton-dir :init-value *kahua-skelton-dir-default*)
 
    ;; internal
    (user-mode :init-value #f)

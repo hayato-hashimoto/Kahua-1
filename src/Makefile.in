@@ -8,6 +8,7 @@ bindir            = @bindir@
 sbindir           = @sbindir@
 libexecdir        = @libexecdir@
 repodir           = @KAHUA_REPODIR@
+skeldir           = @KAHUA_SKELDIR@
 datarootdir       = @datarootdir@
 datadir           = @datadir@/$(package)
 sysconfdir        = @sysconfdir@/$(package)
@@ -95,6 +96,7 @@ kahua/config.scm: kahua/config.scm.in
 	    -e "s@##KAHUA_REVISION##@$(build_revision)@" \
 	    -e "s@##KAHUA_LIBEXECDIR##@$(libexecdir)@" \
 	    -e "s@##KAHUA_REPODIR##@$(repodir)@" \
+	    -e "s@##KAHUA_SKELDIR##@$(skeldir)@" \
 	          $@.in > $@
 	chmod -w $@
 

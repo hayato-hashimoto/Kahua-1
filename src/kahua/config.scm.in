@@ -43,6 +43,7 @@
 	  kahua-default-database-name
 	  kahua-error-document-alist
     kahua-repository-dir
+    kahua-skelton-dir
 
 	  ;; Global Getter
     kahua-timeout-mins
@@ -84,6 +85,7 @@
 
 (define-constant *kahua-static-document-url-default* "static")
 (define-constant *kahua-repository-dir-default* "##KAHUA_REPODIR##")
+(define-constant *kahua-skelton-dir-default* "##KAHUA_SKELDIR##")
 
 (define kahua-config (make-parameter #f))
 
@@ -162,6 +164,7 @@
    (error-document-alist :init-keyword :error-document-alist :init-value '())
 
    (repository-dir :init-keyword :repository-dir :init-value *kahua-repository-dir-default*)
+   (skelton-dir :init-keyword :skelton-dir :init-value #?=*kahua-skelton-dir-default*)
 
    ;; internal
    (user-mode :init-value #f)
@@ -214,8 +217,13 @@
 (define-macro (define-kahua-config-accessor name)
   `(define ,(string->symbol #`"kahua-,|name|")
      (getter-with-setter
-      (lambda () (slot-ref (kahua-config) (quote ,name)))
-      (lambda (arg) (slot-set! (kahua-config) (quote ,name) arg)))))
+      (lambda ()
+        (if (kahua-config)
+           (slot-ref (kahua-config) ',name)
+           (slot-ref (make <kahua-custom>) ',name)))
+      (lambda (arg)
+        (slot-set! (kahua-config) (quote ,name) arg)))))
+
 (apply-define define-kahua-config-accessor
 	      sockbase
 	      working-directory
@@ -233,6 +241,7 @@
 	      default-database-name
 	      auto-restart
 	      error-document-alist
+        skelton-dir
         repository-dir)
 
 ;; Define global getter

@@ -71,6 +71,14 @@ stored. Default: $prefix/share/kahua/repository]),
     [ KAHUA_REPODIR=$with_repodir ])
 AC_SUBST(KAHUA_REPODIR)
 
+KAHUA_SKELDIR=/usr/local/share/kahua/skel
+AC_ARG_WITH(skeldir,
+  AC_HELP_STRING([--with-skeldir=PATH],
+    [Specifies the directory where Kahua package skelton be 
+stored. Default: $prefix/share/kahua/skel]),
+    [ KAHUA_SKELDIR=$with_skeldir ])
+AC_SUBST(KAHUA_SKELDIR)
+
 FASTCGI_EXT=fcg
 AC_ARG_WITH(fastcgi-ext,
   AC_HELP_STRING([--with-fastcgi-ext=EXT],
